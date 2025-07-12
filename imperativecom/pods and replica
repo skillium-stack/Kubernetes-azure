@@ -1,0 +1,84 @@
+==========================================================================================================================
+To connect AKS with laptop
+
+az login --tenant 8542c621-e3ce-488e-80a4-67c5aa6b93c7
+
+az account set --subscription 202481a2-dbc9-4ae2-b7c0-d657fc353efa
+
+az aks get-credentials --resource-group test-aks --name my-aks --overwrite-existing
+
+# Get Worker Node Status
+kubectl get nodes
+
+# Get Worker Node Status with wide option
+kubectl get nodes -o wide
+
+===================================================================================================================
+
+create a  pod
+
+kubectl run my-first-pod --image freelancce/playerimage:01
+
+==========================================================================================================
+
+create a service as LB
+
+kubectl expose pod my-first-pod  --type=LoadBalancer --port=80 --name=my-first-service
+
+=========================================================================================================
+
+check pod logs
+
+kubectl logs my-first-pod
+
+kubectl exec -it my-first-pod -- cat /var/log/apache2/access.log
+
+===========================================================================================================
+
+to find output in yml
+
+kubectl get pod my-first-pod -o yaml
+
+kubectl get service my-first-service -o yaml
+
+===============================================================================================================
+To delete pod
+
+kubectl delete pod my-first-pod
+
+======================================================================================================
+
+Get all Objects in default namespace
+kubectl get all
+
+===========================================================================================================
+create repilica set using yaml
+
+kubectl create -f replicaset-demo.yml   #this yml is there in document
+
+to update in repilica set change in yml (change no. of replica from 3 to 6)
+
+kubectl replace -f replicaset-demo.yml
+
+create service for replicasets
+kubectl expose rs my-helloworld-rs  --type=LoadBalancer --port=80 --target-port=8080 --name=my-helloworld-rs-service
+
+delete replica set
+
+kubectl delete rs/my-player-rs
+==================================================================================================================
+
+Get Service Info
+kubectl get service
+kubectl get svc
+kubectl delete svc/my-helloworld-rs-service
+
+=====================================================================================================================
+
+
+
+
+
+
+
+
